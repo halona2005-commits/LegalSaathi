@@ -1,0 +1,32 @@
+[
+  {
+    "text": "PM Awas Yojana (Gramin): Provides financial assistance of Rs 1.20 lakh (plain areas) or Rs 1.30 lakh (hilly/difficult areas) for construction of a pucca house to eligible rural households. Eligibility is based on the Socio-Economic Caste Census (SECC) 2011 deprivation criteria and Awaas+ survey. Apply through the Gram Panchayat or online at pmayg.nic.in.",
+    "scheme_name": "PM Awas Yojana Gramin",
+    "category": "housing"
+  },
+  {
+    "text": "PM Kisan Samman Nidhi: Provides income support of Rs 6,000 per year (in 3 installments of Rs 2,000) to all landholding farmer families. Apply at the nearest Common Service Centre (CSC) or through pmkisan.gov.in with Aadhaar, land records, and bank account details.",
+    "scheme_name": "PM Kisan Samman Nidhi",
+    "category": "agriculture"
+  },
+  {
+    "text": "Ayushman Bharat - PM Jan Arogya Yojana (PM-JAY): Provides health insurance cover of Rs 5 lakh per family per year for secondary and tertiary hospitalization, to families identified through SECC 2011 deprivation criteria. No premium payment required. Apply for an Ayushman card at the nearest CSC or empanelled hospital with Aadhaar and ration card.",
+    "scheme_name": "Ayushman Bharat PM-JAY",
+    "category": "healthcare"
+  },
+  {
+    "text": "MGNREGA (Mahatma Gandhi National Rural Employment Guarantee Act): Guarantees 100 days of wage employment per financial year to every rural household whose adult members volunteer for unskilled manual work. Apply for a Job Card at the Gram Panchayat with proof of residence and age.",
+    "scheme_name": "MGNREGA",
+    "category": "employment"
+  },
+  {
+    "text": "National Social Assistance Programme (NSAP) - Old Age Pension: Provides monthly pension to persons aged 60 and above belonging to Below Poverty Line (BPL) households, ranging from Rs 200-500 depending on state top-up. Apply through the local Social Welfare Department or Gram Panchayat with age and BPL proof.",
+    "scheme_name": "NSAP Old Age Pension",
+    "category": "social security"
+  },
+  {
+    "text": "Pradhan Mantri Ujjwala Yojana: Provides free LPG gas connection to women from Below Poverty Line (BPL) households, aiming to replace unclean cooking fuels. Apply through the nearest LPG distributor with BPL ration card and Aadhaar.",
+    "scheme_name": "PM Ujjwala Yojana",
+    "category": "energy"
+  }
+]

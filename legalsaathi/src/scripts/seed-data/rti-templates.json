@@ -1,0 +1,14 @@
+[
+  {
+    "text": "RTI Application Template - General: To, The Public Information Officer, [Department Name], [Address]. Subject: Request for information under RTI Act 2005. Sir/Madam, I would like to seek the following information: [state your specific question clearly]. I am enclosing the application fee of Rs 10 (or fee waiver proof if BPL). Applicant Name, Address, Date.",
+    "template_name": "General RTI Application"
+  },
+  {
+    "text": "RTI Application Template - Ration Card Status: To, The Public Information Officer, Food and Civil Supplies Department, [District]. Subject: Information regarding status of Ration Card application. I request the following: 1) Current status of my ration card application (Application No: ___). 2) Reason for delay if pending beyond prescribed timeline. 3) Name and details of officer responsible for processing. Applicant Name, Address, Aadhaar/Application reference, Date.",
+    "template_name": "Ration Card Status RTI"
+  },
+  {
+    "text": "RTI fee waiver: Under RTI Rules, applicants Below Poverty Line (BPL) are exempt from the application fee, provided they attach a copy of their BPL card/certificate with the application.",
+    "template_name": "RTI fee waiver note"
+  }
+]
