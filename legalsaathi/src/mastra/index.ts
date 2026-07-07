@@ -10,11 +10,13 @@ import { weatherAgent } from './agents/weather-agent';
 import { intentRouterAgent } from './agents/intent-router.agent';
 import { schemeAgent } from './agents/scheme.agent';
 import { legalAgent } from './agents/legal.agent';
+import { documentAgent } from "./agents/document.agent";
+import { supervisorAgent } from "./agents/supervisor.agent";
 import { toolCallAppropriatenessScorer, completenessScorer, translationScorer } from './scorers/weather-scorer';
 
 export const mastra = new Mastra({
   workflows: { weatherWorkflow },
-  agents: { weatherAgent, intentRouterAgent, schemeAgent, legalAgent },
+  agents: { weatherAgent, intentRouterAgent, schemeAgent, legalAgent, documentAgent, supervisorAgent },
   scorers: { toolCallAppropriatenessScorer, completenessScorer, translationScorer },
   storage: new MastraCompositeStore({
     id: 'composite-storage',
