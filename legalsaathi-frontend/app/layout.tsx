@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "LegalSaathi — AI Legal Aid for Rural India",
   description:
     "AI-powered legal assistant for rural India. Get legal rights guidance, government scheme eligibility, and RTI document drafting in 10+ Indian languages.",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
