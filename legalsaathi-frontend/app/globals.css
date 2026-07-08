@@ -20,29 +20,17 @@ body {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #111827;
-}
-::-webkit-scrollbar-thumb {
-  background: #374151;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #111827; }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4b5563; }
 
 /* Typing indicator dots */
 @keyframes typingBounce {
   0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
   30% { transform: translateY(-6px); opacity: 1; }
 }
-
-.typing-dot {
-  animation: typingBounce 1.2s infinite;
-}
+.typing-dot { animation: typingBounce 1.2s infinite; }
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
@@ -51,6 +39,18 @@ body {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.message-in {
-  animation: messageIn 0.25s ease-out forwards;
+.message-in { animation: messageIn 0.25s ease-out forwards; }
+
+/* Focus ring for accessibility */
+button:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+textarea:focus-visible {
+  outline: none;
+}
+
+/* Mobile: prevent zoom on input focus (iOS) */
+@media (max-width: 640px) {
+  textarea, input { font-size: 16px !important; }
 }
