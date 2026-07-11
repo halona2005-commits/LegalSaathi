@@ -8,12 +8,24 @@ export const qdrantSearchTool = createTool({
   description:
     "Searches a Qdrant vector collection for relevant legal or scheme information based on semantic similarity to the query.",
   inputSchema: z.object({
-    query: z.string().describe("The user's question or search text"),
-    collection: z
-      .enum(["ipc_crpc_bns", "govt_schemes", "land_laws", "rti_templates"])
-      .describe("Which Qdrant collection to search"),
-    topK: z.number().default(5).describe("Number of results to return"),
-  }),
+  query: z.string().describe("The user's question or search text"),
+
+  collection: z
+    .enum([
+      "ipc_crpc_bns",
+      "govt_schemes",
+      "land_laws",
+      "rti_templates",
+    ])
+    .describe("Which Qdrant collection to search"),
+
+  topK: z
+    .number()
+    .min(1)
+    .max(10)
+    .default(5)
+    .describe("Number of results to return"),
+}),
   outputSchema: z.object({
     results: z.array(
       z.object({
