@@ -1,13 +1,14 @@
 'use client';
 
-type Language = 'en' | 'hi';
+type Language = 'en' | 'hi' | 'kn';
 
 interface EmptyStateProps {
   lang: Language;
   onSuggestion: (text: string) => void;
 }
 
-const suggestions = {
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const suggestions: Record<Language, string[]> = {
   en: [
     'Am I eligible for PM-KISAN?',
     "My MGNREGA wages haven't been paid",
@@ -20,40 +21,62 @@ const suggestions = {
     'RTI आवेदन कैसे करें?',
     'मेरी जमीन बिना सूचना के ले ली गई',
   ],
+  kn: [
+    'PM-KISAN ಗೆ ಅರ್ಹನೇ?',
+    'MGNREGA ವೇತನ ಸಿಕ್ಕಿಲ್ಲ',
+    'RTI ಅರ್ಜಿ ಹೇಗೆ ಸಲ್ಲಿಸಬೇಕು?',
+    'ನನ್ನ ಜಮೀನು ನೋಟಿಸ್ ಇಲ್ಲದೆ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ',
+  ],
 };
 
-const features = {
+const features: Record<Language, { icon: string; title: string; desc: string }[]> = {
   en: [
     { icon: '⚖️', title: 'Legal Rights',  desc: 'IPC, CrPC, BNS 2023' },
-    { icon: '🌾', title: 'Govt Schemes',  desc: 'PM-KISAN, MGNREGA' },
-    { icon: '📄', title: 'RTI Generator', desc: 'Draft in minutes' },
-    { icon: '🎤', title: 'Voice Input',   desc: 'Hindi & regional' },
+    { icon: '🌾', title: 'Govt Schemes',  desc: 'PM-KISAN, MGNREGA'   },
+    { icon: '📄', title: 'RTI Generator', desc: 'Draft in minutes'     },
+    { icon: '🎤', title: 'Voice Input',   desc: 'Hindi & regional'     },
   ],
   hi: [
     { icon: '⚖️', title: 'कानूनी अधिकार', desc: 'IPC, CrPC, BNS 2023' },
-    { icon: '🌾', title: 'सरकारी योजनाएं', desc: 'PM-KISAN, MGNREGA' },
-    { icon: '📄', title: 'RTI सहायता',    desc: 'मिनटों में तैयार' },
+    { icon: '🌾', title: 'सरकारी योजनाएं', desc: 'PM-KISAN, MGNREGA'   },
+    { icon: '📄', title: 'RTI सहायता',    desc: 'मिनटों में तैयार'     },
     { icon: '🎤', title: 'वॉइस असिस्टेंट', desc: 'हिंदी और क्षेत्रीय' },
+  ],
+  kn: [
+    { icon: '⚖️', title: 'ಕಾನೂನು ಹಕ್ಕುಗಳು',  desc: 'IPC, CrPC, BNS 2023'    },
+    { icon: '🌾', title: 'ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು', desc: 'PM-KISAN, MGNREGA'      },
+    { icon: '📄', title: 'RTI ಸಹಾಯ',          desc: 'ನಿಮಿಷಗಳಲ್ಲಿ ತಯಾರು'    },
+    { icon: '🎤', title: 'ಧ್ವನಿ ಸಹಾಯಕ',       desc: 'ಕನ್ನಡ ಮತ್ತು ಪ್ರಾದೇಶಿಕ' },
   ],
 };
 
-const headings = {
+const headings: Record<Language, {
+  tagline: string;
+  desc: string;
+  tryText: string;
+  poweredBy: string;
+}> = {
   en: {
-    title: 'LegalSaathi',
-    tagline: 'AI Legal Action Engine',
-    desc: 'Helping rural citizens understand legal rights, government schemes and generate legal documents — in their own language.',
-    tryText: 'Try one of these questions',
+    tagline:   'AI Legal Action Engine',
+    desc:      'Helping rural citizens understand legal rights, government schemes and generate legal documents — in their own language.',
+    tryText:   'Try one of these questions',
     poweredBy: 'Powered by',
   },
   hi: {
-    title: 'LegalSaathi',
-    tagline: 'AI कानूनी कार्य इंजन',
-    desc: 'ग्रामीण नागरिकों को उनकी भाषा में कानूनी अधिकार, सरकारी योजनाओं और कानूनी दस्तावेज़ों में सहायता।',
-    tryText: 'इनमें से कोई प्रश्न पूछें',
+    tagline:   'AI कानूनी कार्य इंजन',
+    desc:      'ग्रामीण नागरिकों को उनकी भाषा में कानूनी अधिकार, सरकारी योजनाओं और कानूनी दस्तावेज़ों में सहायता।',
+    tryText:   'इनमें से कोई प्रश्न पूछें',
     poweredBy: 'संचालित',
+  },
+  kn: {
+    tagline:   'AI ಕಾನೂನು ಕ್ರಿಯಾ ಎಂಜಿನ್',
+    desc:      'ಗ್ರಾಮೀಣ ನಾಗರಿಕರಿಗೆ ಅವರ ಭಾಷೆಯಲ್ಲಿ ಕಾನೂನು ಹಕ್ಕುಗಳು, ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು ಮತ್ತು ಕಾನೂನು ದಾಖಲೆಗಳಲ್ಲಿ ಸಹಾಯ.',
+    tryText:   'ಈ ಪ್ರಶ್ನೆಗಳಲ್ಲಿ ಒಂದನ್ನು ಪ್ರಯತ್ನಿಸಿ',
+    poweredBy: 'ಇದರಿಂದ ಚಾಲಿತ',
   },
 };
 
+// ─── Component ────────────────────────────────────────────────────────────────
 export default function EmptyState({ lang, onSuggestion }: EmptyStateProps) {
   const h = headings[lang];
 
@@ -67,7 +90,7 @@ export default function EmptyState({ lang, onSuggestion }: EmptyStateProps) {
 
       {/* Heading */}
       <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-        {h.title}
+        LegalSaathi
       </h1>
       <p className="mt-2 text-green-400 font-semibold text-sm sm:text-base">
         {h.tagline}
@@ -78,7 +101,7 @@ export default function EmptyState({ lang, onSuggestion }: EmptyStateProps) {
 
       {/* Feature cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 w-full max-w-2xl">
-        {features[lang].map((item) => (
+        {features[lang].map(item => (
           <div
             key={item.title}
             className="rounded-2xl border border-gray-800 bg-gray-900 hover:border-green-600/60 hover:bg-gray-800/80 transition-all duration-300 p-4 text-center group"
@@ -98,9 +121,11 @@ export default function EmptyState({ lang, onSuggestion }: EmptyStateProps) {
 
       {/* Suggestion chips */}
       <div className="mt-10 w-full max-w-2xl">
-        <p className="text-center text-gray-500 text-sm mb-4">{h.tryText}</p>
+        <p className="text-center text-gray-500 text-sm mb-4">
+          {h.tryText}
+        </p>
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-          {suggestions[lang].map((question) => (
+          {suggestions[lang].map(question => (
             <button
               key={question}
               onClick={() => onSuggestion(question)}
@@ -117,7 +142,10 @@ export default function EmptyState({ lang, onSuggestion }: EmptyStateProps) {
         <p className="text-xs text-gray-600 mb-2">{h.poweredBy}</p>
         <div className="flex flex-wrap justify-center gap-2">
           {['Mastra', 'Qdrant', 'Enkrypt AI'].map(name => (
-            <span key={name} className="rounded-full bg-gray-800 border border-gray-700 px-3 py-1 text-xs text-gray-400">
+            <span
+              key={name}
+              className="rounded-full bg-gray-800 border border-gray-700 px-3 py-1 text-xs text-gray-400"
+            >
               {name}
             </span>
           ))}

@@ -16,7 +16,7 @@ interface Message {
   timestamp?: Date;
 }
 
-type Language = 'en' | 'hi';
+type Language = 'en' | 'hi' | 'kn' ;
 
 // ─── UI Text ──────────────────────────────────────────────────────────────────
 const UI_TEXT = {
@@ -58,12 +58,32 @@ const UI_TEXT = {
     voiceListening: 'सुन रहा हूं...',
     langToast:      'हिंदी मोड सक्रिय',
   },
+  kn: {
+    subtitle:       'AI ಕಾನೂನು ಸಹಾಯ · ಗ್ರಾಮೀಣ ಭಾರತ · 10+ ಭಾಷೆಗಳು',
+    online:         'ಆನ್‌ಲೈನ್',
+    clear:          'ತೆರವುಗೊಳಿಸಿ',
+    confirmClear:   'ಖಚಿತವೇ?',
+    placeholder:    'ಕನ್ನಡ ಅಥವಾ ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಕೇಳಿ...',
+    send:           'ಕಳುಹಿಸಿ',
+    footer:         'Mastra · Qdrant · Enkrypt AI ಮೂಲಕ · ಕಳುಹಿಸಲು Enter ಒತ್ತಿ',
+    thinking:       'LegalSaathi ಯೋಚಿಸುತ್ತಿದೆ...',
+    copy:           'ನಕಲಿಸಿ',
+    copied:         'ನಕಲಿಸಲಾಗಿದೆ!',
+    retry:          '🔄 ಮತ್ತೆ ಕಳುಹಿಸಿ',
+    agentLabel:     'LegalSaathi',
+    confidence:     'ವಿಶ್ವಾಸ',
+    voiceStart:     'ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಪ್ರಾರಂಭಿಸಿ',
+    voiceStop:      'ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ',
+    voiceListening: 'ಕೇಳುತ್ತಿದ್ದೇನೆ...',
+    langToast:      'ಕನ್ನಡ ಮೋಡ್ ಸಕ್ರಿಯ',
+  },
 };
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const WELCOME: Record<Language, string> = {
   en: 'Namaste! 🙏 I am LegalSaathi. Ask me about your legal rights, government schemes, or get help drafting an RTI application — in Hindi or English.',
   hi: 'Namaste! 🙏 Main LegalSaathi hoon. Apne kanooni adhikar, sarkari yojanaon ke baare mein poochhen, ya RTI application banane mein madad lein — Hindi ya English mein.',
+  kn: 'Namaste! 🙏 Naanu LegalSaathi. Nimmа kanooni hakku, sarkari yojanegalu athava RTI arzeji tayyaarisalu sahaaya maadi — Kannada athava English nalli.',
 };
 
 const AGENT_LABELS: Record<string, { label: string; color: string }> = {
@@ -74,7 +94,7 @@ const AGENT_LABELS: Record<string, { label: string; color: string }> = {
 };
 
 const LANG_KEY = 'legalsaathi-lang';
-const LANG_CODES: Record<Language, string> = { en: 'en-IN', hi: 'hi-IN' };
+const LANG_CODES: Record<Language, string> = { en: 'en-IN', hi: 'hi-IN', kn: 'kn-IN' };
 const CHAR_LIMIT = 500;
 
 // ─── Voice Button ─────────────────────────────────────────────────────────────
@@ -486,17 +506,17 @@ export default function Home() {
               className="flex items-center bg-gray-800 rounded-lg p-0.5 border border-gray-700"
               role="group" aria-label="Language selection"
             >
-              {(['en', 'hi'] as Language[]).map(l => (
+              {(['en', 'hi', 'kn'] as Language[]).map(l => (
                 <button
                   key={l}
                   onClick={() => handleSetLang(l)}
                   aria-pressed={lang === l}
-                  aria-label={l === 'en' ? 'Switch to English' : 'Switch to Hindi'}
+                  aria-label={l === 'en' ? 'Switch to English' : l === 'hi' ? 'Switch to Hindi' : 'Switch to Kannada'}
                   className={`text-xs px-2 sm:px-3 py-1.5 rounded-md font-medium transition-all duration-200 cursor-pointer ${
                     lang === l ? 'bg-green-600 text-white shadow' : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  {l === 'en' ? 'EN' : 'हिं'}
+                  {l === 'en' ? 'EN' : l === 'hi' ? 'हिं' : 'ಕನ್ನ'}
                 </button>
               ))}
             </div>
