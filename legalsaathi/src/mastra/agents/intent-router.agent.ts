@@ -1,5 +1,5 @@
 import { Agent } from "@mastra/core/agent";
-import { featherless } from "../lib/featherless";
+import { google } from "@ai-sdk/google";
 import { z } from "zod";
 
 export const IntentSchema = z.object({
@@ -48,5 +48,5 @@ You MUST respond with ONLY a raw JSON object, no markdown code fences, no backti
 
 Do not wrap the JSON in \`\`\`json or \`\`\` under any circumstances. Output the raw object only.
 `.trim(),
-  model: featherless("meta-llama/Meta-Llama-3.1-70B-Instruct"),
+ model: google("gemini-2.5-flash"),
 });
